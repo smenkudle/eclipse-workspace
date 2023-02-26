@@ -3,8 +3,8 @@ package com.example.demo.model;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity(name = "userlogin")
 public class UserLogin implements Serializable{
@@ -12,8 +12,11 @@ public class UserLogin implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Long id;
+	@NotBlank
 	private String username;
+	@NotBlank
 	private String password;
+	@NotBlank
 	private String role;
 	
 	public Long getId() {
@@ -39,6 +42,11 @@ public class UserLogin implements Serializable{
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserLogin [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + "]";
 	}
 	
 }
