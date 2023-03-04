@@ -15,30 +15,30 @@ public class DemoController {
 
 	@Autowired
 	private DemoService demoService;
-	
-	@GetMapping("/hello")
-	public String helloWorld()
-    {
-        return "Hello World!";
-    }
 
+	@GetMapping("/hello")
+	public String helloWorld() {
+		return "Hello World!";
+	}
 	
-	@GetMapping("/users")
-	public List<UserLogin> getUsers()
-    {
+	@GetMapping("/admin/login")
+	public String adminLogin() {
+		return "Hello Admin!";
+	}
+
+	@GetMapping("/users/all")
+	public List<UserLogin> getUsers() {
 		return demoService.getAllUsers();
-    }
-	
-	@GetMapping("/employees")
-	public List<Employee> getEmployees()
-    {
-        return demoService.getAllEmployees();
-    }
-	
-	//there is no use of exposing error as this is reserved
+	}
+
+	@GetMapping("/employees/all")
+	public List<Employee> getEmployees() {
+		return demoService.getAllEmployees();
+	}
+
+	// there is no use of exposing error as this is reserved
 	@GetMapping("/errors")
-	public String helloError()
-    {
-        return "Something is wrong!";
-    }
+	public String helloError() {
+		return "Something is wrong!";
+	}
 }

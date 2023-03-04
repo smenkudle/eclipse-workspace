@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,7 @@ import com.example.demo.jpa.UserRepository;
 import com.example.demo.model.UserLogin;
 
 @Service
+@Profile(value = "sit")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
@@ -29,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		UserLogin userLogin = null;
 
 		for (UserLogin user : list) {
-			System.out.println("User details: "+user);
+			System.out.println("User details: " + user);
 			if (user.getUsername().equalsIgnoreCase(username)) {
 				userFound = true;
 				userLogin = user;

@@ -38,6 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 			}
 		};
 
+		System.out.println("********* Role: " + role + "*********");
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(roles);
 

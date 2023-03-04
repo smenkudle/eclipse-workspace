@@ -3,6 +3,7 @@ package com.example.demo.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +14,7 @@ import com.example.demo.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+@Profile(value = "sit")
 public class UserLoginFilter {
 
 	@Autowired
@@ -25,8 +27,9 @@ public class UserLoginFilter {
 
 		http.cors().and().headers().frameOptions().disable().and() // to access h2 console using local-host
 				.csrf().disable() // to access h2 console using local-host
-				.authorizeHttpRequests().requestMatchers("/").hasRole("admin").requestMatchers("/users").hasRole("user")
-				.requestMatchers("/employees").hasRole("employee").anyRequest().authenticated().and().formLogin();
+				.authorizeHttpRequests()
+				.anyRequest()
+				.authenticated().and().formLogin();
 
 		http.authenticationProvider(authenticationProvider());
 
@@ -35,7 +38,7 @@ public class UserLoginFilter {
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
-		
+
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
 		authProvider.setUserDetailsService(userDetailsService);

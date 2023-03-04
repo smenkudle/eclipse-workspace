@@ -15,7 +15,7 @@ public class DemoService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
@@ -29,7 +29,7 @@ public class DemoService {
 		return userRepository.findAll();
 
 	}
-	
+
 	public List<Employee> getAllEmployees() {
 
 		return employeeRepository.findAll();
@@ -37,7 +37,7 @@ public class DemoService {
 	}
 
 	public void saveEmployee(Employee employee) {
-		
+
 		employeeRepository.save(employee);
 	}
 }
